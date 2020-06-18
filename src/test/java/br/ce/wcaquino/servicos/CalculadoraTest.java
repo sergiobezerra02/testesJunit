@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.ce.wcaquino.servicos.exceptions.NaoPodeDividirPorZeroException;
+import matchers.MatcherPessoal;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CalculadoraTest {
@@ -33,6 +34,7 @@ public class CalculadoraTest {
 		
 		//Verificação
 		assertThat(resultado, is(14));
+		assertThat(resultado, MatcherPessoal.validaResultado(14));
 		
 	}
 	
@@ -48,6 +50,7 @@ public class CalculadoraTest {
 		
 		//Verificação
 		assertThat(resultado, is(5));
+		assertThat(resultado, MatcherPessoal.validaResultado(5));
 		
 	}
 	
@@ -63,6 +66,7 @@ public class CalculadoraTest {
 		
 		//Verificacão
 		assertThat(resultado, is(10));
+		assertThat(resultado, MatcherPessoal.validaResultado(10));
 	}
 	
 	
@@ -78,6 +82,7 @@ public class CalculadoraTest {
 		
 		//Verificação
 		assertThat(resultado, is(2));
+		assertThat(resultado, MatcherPessoal.validaResultado(2));
 		
 				
 	}
@@ -91,7 +96,6 @@ public class CalculadoraTest {
 		
 		//Ação
 		calc.dividir(x, y);
-		
 				
 	}
 	
