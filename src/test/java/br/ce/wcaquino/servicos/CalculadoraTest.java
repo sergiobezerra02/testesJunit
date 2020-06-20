@@ -1,6 +1,6 @@
 package br.ce.wcaquino.servicos;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Assert;
@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.mockito.Mockito;
 
 import br.ce.wcaquino.dao.CalculadoraDAO;
-import br.ce.wcaquino.dao.CalculadoraFakeDAO;
 import br.ce.wcaquino.servicos.exceptions.NaoPodeDividirPorZeroException;
 import builder.CalculadoraBuilder;
 import matchers.MatcherPessoal;
@@ -23,7 +23,7 @@ public class CalculadoraTest {
 	@Before
 	public void before() {
 		calc = CalculadoraBuilder.getCalculadora().agora();
-		CalculadoraDAO calculaDAO = new CalculadoraFakeDAO();
+		CalculadoraDAO calculaDAO = Mockito.mock(CalculadoraDAO.class);
 		calc.setCalculaoraDAO(calculaDAO);
 	}
 	
