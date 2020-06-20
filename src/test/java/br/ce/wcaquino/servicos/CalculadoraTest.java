@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import br.ce.wcaquino.servicos.exceptions.NaoPodeDividirPorZeroException;
+import builder.CalculadoraBuilder;
 import matchers.MatcherPessoal;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -19,7 +20,7 @@ public class CalculadoraTest {
 	
 	@Before
 	public void before() {
-		calc = new Calculadora();
+		calc = CalculadoraBuilder.getCalculadora().agora();
 	}
 	
 	@Test
