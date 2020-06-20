@@ -9,6 +9,8 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import br.ce.wcaquino.dao.CalculadoraDAO;
+import br.ce.wcaquino.dao.CalculadoraFakeDAO;
 import br.ce.wcaquino.servicos.exceptions.NaoPodeDividirPorZeroException;
 import builder.CalculadoraBuilder;
 import matchers.MatcherPessoal;
@@ -21,6 +23,8 @@ public class CalculadoraTest {
 	@Before
 	public void before() {
 		calc = CalculadoraBuilder.getCalculadora().agora();
+		CalculadoraDAO calculaDAO = new CalculadoraFakeDAO();
+		calc.setCalculaoraDAO(calculaDAO);
 	}
 	
 	@Test
