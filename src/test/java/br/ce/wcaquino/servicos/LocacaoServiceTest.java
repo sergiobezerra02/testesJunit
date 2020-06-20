@@ -22,6 +22,8 @@ import org.junit.rules.ErrorCollector;
 //import org.junit.rules.ExpectedException;
 import org.junit.runners.MethodSorters;
 
+import br.ce.wcaquino.dao.LocacaoDAO;
+import br.ce.wcaquino.dao.LocacaoDAOFake;
 import br.ce.wcaquino.entidades.Filme;
 import br.ce.wcaquino.entidades.Locacao;
 import br.ce.wcaquino.entidades.Usuario;
@@ -43,8 +45,10 @@ public class LocacaoServiceTest {
 	
 	
 	@Before
-	public void before() {
+	public void before(){
 		ls1 = new LocacaoService();
+		LocacaoDAO ldao = new LocacaoDAOFake();
+		ls1.setLocacaoDAO(ldao);
 	}
 	
 //	@After
