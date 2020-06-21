@@ -13,11 +13,13 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import br.ce.wcaquino.servicos.exceptions.CalculadoraException;
+
 @RunWith(Parameterized.class)
 public class ParametrizacoesTest {
 	
 	
-	private Calculadora calc;
+	private CalculadoraService calc;
 	
 	@Parameter
 	public Integer primeiroNumero;
@@ -33,7 +35,7 @@ public class ParametrizacoesTest {
 	
 	@Before
 	public void start() {
-		calc = new Calculadora();
+		calc = new CalculadoraService();
 	}
 	
 	
@@ -52,7 +54,7 @@ public class ParametrizacoesTest {
 	}
 	
 	@Test
-	public void t1_testarSoma() {
+	public void t1_testarSoma() throws CalculadoraException {
 		
 		//Cenário
 		//@Before

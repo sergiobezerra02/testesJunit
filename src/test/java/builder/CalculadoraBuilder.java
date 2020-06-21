@@ -1,10 +1,10 @@
 package builder;
 
-import br.ce.wcaquino.servicos.Calculadora;
+import br.ce.wcaquino.servicos.CalculadoraService;
 
 public class CalculadoraBuilder {
 	
-	private static Calculadora calculadora;
+	private static CalculadoraService calculadora;
 	private static CalculadoraBuilder calculadoraBuilder;
 	
 	private CalculadoraBuilder() {}
@@ -15,13 +15,13 @@ public class CalculadoraBuilder {
 			calculadoraBuilder = new CalculadoraBuilder();
 		}			
 		if(calculadora == null) {
-			calculadoraBuilder.calculadora = new Calculadora();
+			calculadoraBuilder.calculadora = new CalculadoraService();
 		}
 		
 		return calculadoraBuilder;
 	}
 	
-	public Calculadora agora() {
+	public CalculadoraService agora() {
 		return this.calculadora;
 	}
 
