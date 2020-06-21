@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.mockito.Mockito;
 
+import br.ce.wcaquino.dao.CalculadoraConsultarResultadoDAO;
 import br.ce.wcaquino.dao.CalculadoraDAO;
 import br.ce.wcaquino.dao.CalculadoraValorSoma;
 import br.ce.wcaquino.servicos.exceptions.CalculadoraException;
@@ -23,6 +24,7 @@ public class CalculadoraServiceTest {
 	
 	private CalculadoraService calc;
 	private CalculadoraValorSoma calculadoraValorSoma;
+	private CalculadoraConsultarResultadoDAO calculadoraConsultarResultadoDAO;
 	
 	@Before
 	public void before() {
@@ -34,6 +36,10 @@ public class CalculadoraServiceTest {
 		
 		calculadoraValorSoma = Mockito.mock(CalculadoraValorSoma.class);
 		calc.setCalculadoraValorSoma(calculadoraValorSoma);
+		
+		calculadoraConsultarResultadoDAO = Mockito.mock(CalculadoraConsultarResultadoDAO.class);
+		calc.setCalculadoraConsultarResultadoDAO(calculadoraConsultarResultadoDAO);
+		
 	}
 	
 	@Test
@@ -141,12 +147,27 @@ public class CalculadoraServiceTest {
 		int y = 8;
 		
 		//Ação
-		calc.somar(x, y);
-		
-		Mockito.when(calc.validarValorSomaTetarMock()).thenReturn(true);
+		calc.somar(x, y);		
 		
 		//Verificação
+		Mockito.when(calc.validarValorSomaTetarMock()).thenReturn(true);
 		assertThrows(CalculadoraException.class, () -> calc.validarValorSomaTetarMock());	
+		
+	}
+	
+	@Test
+	public void t8_testarVerificacaoComportamentoMockito() throws CalculadoraException {
+		
+		//Cenário
+		int x = 5;
+		int y = 5;
+		
+		
+		//Ação
+		int resultado = calc.somar(x, y);
+		
+		//Verificação
+		Mockito.verify(calculadoraConsultarResultadoDAO).consultarResultado(resultado);
 		
 	}
 

@@ -1,5 +1,6 @@
 package br.ce.wcaquino.servicos;
 
+import br.ce.wcaquino.dao.CalculadoraConsultarResultadoDAO;
 import br.ce.wcaquino.dao.CalculadoraDAO;
 import br.ce.wcaquino.dao.CalculadoraValorSoma;
 import br.ce.wcaquino.servicos.exceptions.CalculadoraException;
@@ -9,20 +10,25 @@ public class CalculadoraService {
 	
 	private CalculadoraDAO calculadoraDAO;
 	private CalculadoraValorSoma calculadoraValorSoma;
+	private CalculadoraConsultarResultadoDAO calculadoraConsultarResultadoDAO;
 
 	public int somar(int x, int y) throws CalculadoraException {
 		Integer resultado = x + y;
 		calculadoraDAO.save(resultado);
+		calculadoraConsultarResultadoDAO.consultarResultado(resultado);
 		return resultado;
 	}
 
 	public int subtrair(int x, int y) {		
-		calculadoraDAO.save(x - y);
+		Integer resultado = x - y;
+		calculadoraDAO.save(resultado);
+		calculadoraConsultarResultadoDAO.consultarResultado(resultado);
 		return x - y;
 	}
 
 	public int multiplicar(int x, int y) {	
-		calculadoraDAO.save(x * y);
+		Integer resultado = x * y;
+		calculadoraDAO.save(resultado);
 		return x * y;
 	}
 
@@ -30,7 +36,8 @@ public class CalculadoraService {
 		if(y == 0) {
 			throw new NaoPodeDividirPorZeroException("Não é possível dividir por zero.");
 		}
-		calculadoraDAO.save(x / y);
+		Integer resultado = x / y;
+		calculadoraDAO.save(resultado);
 		return x / y;
 	}
 	
@@ -40,6 +47,10 @@ public class CalculadoraService {
 			throw new CalculadoraException("Atenção! Resultado = " + valor);
 		}
 		return false;
+	}
+	
+	public void setCalculadoraConsultarResultadoDAO(CalculadoraConsultarResultadoDAO calculadoraConsultarResultadoDAO) {
+		this.calculadoraConsultarResultadoDAO = calculadoraConsultarResultadoDAO;
 	}
 	
 	public void setCalculaoraDAO(CalculadoraDAO calculadoraDAO) {
