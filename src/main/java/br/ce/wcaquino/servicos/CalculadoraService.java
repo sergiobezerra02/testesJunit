@@ -14,9 +14,12 @@ public class CalculadoraService {
 
 	public int somar(int x, int y) throws CalculadoraException {
 		Integer resultado = x + y;
+		for(int i = 0; i < 4; i++) {
 		calculadoraDAO.save(resultado);
 		calculadoraConsultarResultadoDAO.consultarResultado(resultado);
+		}
 		return resultado;
+		
 	}
 
 	public int subtrair(int x, int y) {		
